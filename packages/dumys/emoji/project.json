@@ -1,0 +1,43 @@
+{
+  "name": "dumys-emoji",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dumys/emoji/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/dumys/emoji",
+        "main": "packages/dumys/emoji/src/index.ts",
+        "tsConfig": "packages/dumys/emoji/tsconfig.lib.json",
+        "assets": ["packages/dumys/emoji/*.md", "packages/dumys/emoji/LICENSE"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/dumys/emoji/**/*.ts",
+          "packages/dumys/emoji/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/dumys/emoji/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
